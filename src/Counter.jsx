@@ -9,15 +9,14 @@ function Counter () {
         setValue(newValue);
     };
     const handleDecrement = (decrementValue) => {
-        const newValue = value + parseInt(decrementValue, 10);
+        const newValue = value - parseInt(decrementValue, 10);
         setValue(newValue);
     };
-
     return(
         <div>
             <h1>Please add or Subtract</h1>
             <div className="board">
-                <div id="value" style={{ color: value < 0 ? "red" : "black" }}>
+                <div id="value" style={{ color: value < 0 ? "red" : "blue" }}>
                     {value}
                 </div>
                 <div className="container">
@@ -28,7 +27,7 @@ function Counter () {
             symbol="+"
           />
           <div className="value-form">
-            <input type="number" id="number" defaultValue="0" />
+            <input type="number" id="number" defaultValue="0" style={{ color: value < 0 ? "blue" : "red", textAlign: "center" }} />
           </div>
           <Button
             action={() =>
@@ -36,7 +35,22 @@ function Counter () {
             }
             symbol="-"
           />
+          <Button
+            action={() => handleIncrement(2 * parseInt(document.getElementById("number").value, 10))}
+            symbol="++"
+          />
+            <Button
+            action={() => handleDecrement(2 * parseInt(document.getElementById("number").value, 10))}
+            symbol="--"
+          />
         </div>
+        <Button
+        symbol="C"
+        action={() => {
+          setValue(0);
+          document.getElementById("number").value = "0";
+        }}
+      />
       </div>
     </div>
   );
